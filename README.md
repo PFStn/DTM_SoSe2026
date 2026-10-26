@@ -46,8 +46,8 @@ In dieser Aufgabe wurde eine zeitbasierte Animation der Geminiden in der Peak-Na
 
 ## EP08 | Mesh-Daten
 
-*Folgt.*
+![Windanimation Deutschland](EP_08_Windanimation_Stein.gif)
 
 ## EP09 | 3D-Gebäudemodelle
 
-*Folgt.*
+![2,5D Ansicht](EP09_2_5D.png)
