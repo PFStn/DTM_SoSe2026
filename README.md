@@ -2,7 +2,7 @@
 
 ## EP01 | Dasymetrische Choroplethenkarten
 
-[📄 Karte als PDF ansehen](EP01_Bevoelkerungsdichte_Berlin.pdf)
+[📄 Karte als PDF ansehen](EP01.png)
 
 In der ersten Aufgabe wurde die Bevölkerungsdichte Berlins im Jahr 2025 mit drei verschiedenen Methoden dargestellt und in einem gemeinsamen Layout gegenübergestellt: als absolute Choroplethenkarte, als relative Choroplethenkarte (Klassifizierung nach Jenks) und als dasymetrische Karte. Die absolute Darstellung zeigt die Einwohnerzahl je Gebiet und lässt große Flächen am Stadtrand dadurch besonders kräftig erscheinen. Die relative Darstellung bezieht die Einwohner auf die Fläche und rückt die dicht besiedelte Innenstadt in den Vordergrund. Die dasymetrische Karte verteilt die Bevölkerung nur auf tatsächlich bewohnte Blockflächen, sodass Wälder, Gewässer und Grünflächen wie der Grunewald oder das Tempelhofer Feld ausgespart bleiben. Der direkte Vergleich zeigt, wie stark die gewählte Methode die Interpretation beeinflusst und dass die dasymetrische Darstellung die reale Siedlungsstruktur am genauesten wiedergibt.
 
@@ -54,4 +54,4 @@ Die EP08 zeigt den Orkan Kyrill vom 16. bis 21. Januar 2007 als animierte Mesh-D
 
 ![Völkerschlachtdenkmal Leipzig in 3D](EP09_3D_Leipzig.png)
 
-Für die EP09 wurde ein 3D-Gebäudemodell von Leipzig auf Grundlage der amtlichen LoD2-Daten des Freistaats Sachsen erstellt. Die einzelnen Kacheln wurden per Python zu einem gemeinsamen 3D-Datensatz zusammengeführt und in der 3D-Ansicht von QGIS mit ihren echten Dach- und Wandhöhen dargestellt. Im Mittelpunkt steht das Völkerschlachtdenkmal, das orange hervorgehoben ist, während die übrigen Gebäude neutral grau bleiben. Der Blick von Südwesten über das Wasserbecken zeigt das Denkmal im Zusammenhang mit den umliegenden Wohngebieten, Grünflächen und Sportanlagen. LoD2-Modelle bilden Dachformen realistisch ab und eignen sich gut für Stadtbild- und Sichtachsenanalysen. Komplexe Bauwerke wie das Denkmal selbst werden jedoch stark vereinfacht, und Details wie Fassaden oder Skulpturen fehlen.
+Für die EP09 wurde ein 3D-Gebäudemodell von Leipzig auf Grundlage der amtlichen LoD2-Daten des Freistaats Sachsen erstellt. Die einzelnen Kacheln wurden in der 3D-Ansicht von QGIS mit ihren echten Dachformen und Gebäudehöhen dargestellt. Im Mittelpunkt steht das Völkerschlachtdenkmal, das orange hervorgehoben ist, jedoch fehlt bei diesem Gebäudemodell jeglicher Detailgrad. LoD2-Modelle bilden Dachformen realistisch ab und eignen sich gut für Stadtbild- und Sichtachsenanalysen. Komplexe Bauwerke wie das Denkmal selbst werden jedoch stark vereinfacht, und Details wie Fassaden oder Skulpturen fehlen.
