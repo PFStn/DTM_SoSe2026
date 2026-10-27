@@ -2,7 +2,7 @@
 
 ## EP01 | Dasymetrische Choroplethenkarten
 
-[📄 Karte als PDF ansehen](EP01.png)
+![Choropletenkarte](EP01.png)
 
 In der ersten Aufgabe wurde die Bevölkerungsdichte Berlins im Jahr 2025 mit drei verschiedenen Methoden dargestellt und in einem gemeinsamen Layout gegenübergestellt: als absolute Choroplethenkarte, als relative Choroplethenkarte (Klassifizierung nach Jenks) und als dasymetrische Karte. Die absolute Darstellung zeigt die Einwohnerzahl je Gebiet und lässt große Flächen am Stadtrand dadurch besonders kräftig erscheinen. Die relative Darstellung bezieht die Einwohner auf die Fläche und rückt die dicht besiedelte Innenstadt in den Vordergrund. Die dasymetrische Karte verteilt die Bevölkerung nur auf tatsächlich bewohnte Blockflächen, sodass Wälder, Gewässer und Grünflächen wie der Grunewald oder das Tempelhofer Feld ausgespart bleiben. Der direkte Vergleich zeigt, wie stark die gewählte Methode die Interpretation beeinflusst und dass die dasymetrische Darstellung die reale Siedlungsstruktur am genauesten wiedergibt.
 
@@ -50,28 +50,17 @@ In dieser Aufgabe wurde eine zeitbasierte Animation der Geminiden in der Peak-Na
 
 Mesh-Daten speichern Werte auf einem Netz aus Knoten und eignen sich deshalb gut für kontinuierliche Größen, die sich räumlich und zeitlich ändern, wie Windfelder. Stromlinien machen die Strömungsrichtung unmittelbar sichtbar, und in der Animation lässt sich verfolgen, wie ein Sturmtief über Europa hinwegzieht und wo der Wind am stärksten ist.
 
-Die dichte, malerische Darstellung geht allerdings auf Kosten der Lesbarkeit: Genaue Windgeschwindigkeiten lassen sich nur grob über die Farbskala abschätzen, und die Auflösung der Ausgangsdaten (0,25°, stündlich) begrenzt den Detailgrad. Wie bei jeder Animation fehlt außerdem die Gesamtübersicht, und die Datei wird schnell sehr groß.
+Die dichte, malerische Darstellung geht allerdings auf Kosten der Lesbarkeit: Genaue Windgeschwindigkeiten lassen sich nur grob über die Farbskala abschätzen. Wie bei jeder Animation fehlt außerdem die Gesamtübersicht, und die Datei wird schnell sehr groß.
 
 ![Orkan Kyrill – Europa im Sturm](kyrill_animation.gif)
 
 ### Umsetzung der Methode
 
-Grundlage sind die stündlichen Windkomponenten in 10 m Höhe aus der ERA5-Reanalyse des Copernicus Climate Change Service, die als GRIB-Datei in QGIS als Mesh-Layer geladen wurden. QGIS rendert für jede Stunde die Windgeschwindigkeit als Farbfläche und die Stromlinien des Windvektors. Die Stromlinien dienen als Maske für die Farbfläche, sodass nach Geschwindigkeit eingefärbte Pinselstriche auf nachtblauem Grund entstehen, angelehnt an van Goghs „Sternennacht“. Für den Zeitraum vom 17. bis 19. Januar 2007 wurden 48 Einzelbilder mit Titel, Uhrzeit, Farbskala und Impressum in ETRS89-LAEA (EPSG:3035) exportiert und zu einem GIF zusammengesetzt. Am Höhepunkt am 18. Januar um 17 Uhr erreicht der Wind im Kartenausschnitt bis zu 83 km/h.
-
-#### Zwei Tage Orkan, gemalt in 48 Bildern.
+Grundlage sind die stündlichen Windkomponenten in 10 m Höhe aus der ERA5-Reanalyse des Copernicus Climate Change Service, die als GRIB-Datei in QGIS als Mesh-Layer geladen wurden. QGIS rendert für jede Stunde die Windgeschwindigkeit als Farbfläche und die Stromlinien des Windvektors. Die Stromlinien dienen als Maske für die Farbfläche, sodass nach Geschwindigkeit eingefärbte Pinselstriche auf nachtblauem Grund entstehen, angelehnt an den Stil van Goghs.
 
 ## EP09 | 3D-Gebäudemodelle
 
-### Vor- und Nachteile der Methode
-
-3D-Gebäudemodelle machen Gebäudehöhen, Dachformen und Stadtstrukturen deutlich greifbarer als ein Grundriss. LoD2-Modelle bilden Dächer realistisch ab und eignen sich gut für Stadtbild- und Sichtachsenanalysen, zumal sie für ganze Bundesländer frei verfügbar sind.
-
-Der Detailgrad ist jedoch begrenzt: Komplexe Bauwerke werden stark vereinfacht, Fassaden und Skulpturen fehlen ganz. Beim Völkerschlachtdenkmal fehlt dadurch jeglicher Detailgrad, es erscheint nur als schlichter Block. Außerdem verdecken hohe Gebäude je nach Blickwinkel andere Objekte, Entfernungen lassen sich in der Schrägansicht nicht messen, und große Modelle brauchen viel Rechenleistung.
+Grundlage sind die amtlichen LoD2-Gebäudemodelle des Freistaats Sachsen für ein Gebiet rund um das Völkerschlachtdenkmal, und umfassen 2 × 2 km Kacheln. In der 3D-Ansicht von QGIS stehen die Gebäude mit ihren absoluten Dach- und Wandhöhen auf der Kartegrundlage ESRI Satelite Image.
+3D-Gebäudemodelle machen Gebäudehöhen, Dachformen und Stadtstrukturen deutlich greifbarer als ein Grundriss. LoD2-Modelle bilden Dächer realistisch ab und eignen sich gut für Stadtbild- und Sichtachsenanalysen, zumal sie für ganze Bundesländer frei verfügbar sind. Der Detailgrad einer 3D Modelliereung ist jedoch begrenzt: Komplexe Bauwerke werden stark vereinfacht, Fassaden und Skulpturen fehlen ganz. Beim Völkerschlachtdenkmal fehlt dadurch jeglicher Detailgrad, es erscheint nur als schlichter Block. Außerdem verdecken hohe Gebäude je nach Blickwinkel andere Objekte, Entfernungen lassen sich in der Schrägansicht nicht messen, und große Modelle brauchen viel Rechenleistung.
 
 ![Völkerschlachtdenkmal Leipzig in 3D](EP09_3D_Leipzig.png)
-
-### Umsetzung der Methode
-
-Grundlage sind die amtlichen LoD2-Gebäudemodelle des Freistaats Sachsen für ein Gebiet rund um das Völkerschlachtdenkmal, 30 Kacheln mit je 2 × 2 km. Ein Python-Skript hat die Shape-Kacheln eingelesen und mit ihren echten Höhenwerten zu einem gemeinsamen 3D-GeoPackage zusammengeführt. In der 3D-Ansicht von QGIS stehen die Gebäude mit ihren absoluten Dach- und Wandhöhen auf einem Luftbild. Eine regelbasierte Darstellung hebt das Völkerschlachtdenkmal orange hervor, alle übrigen Gebäude bleiben hellgrau. Die Kamera blickt von Südwesten über das Wasserbecken auf das Denkmal.
-
-#### 91 Meter Denkmal, im Modell nur ein Quader.
