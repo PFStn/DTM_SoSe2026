@@ -46,12 +46,32 @@ In dieser Aufgabe wurde eine zeitbasierte Animation der Geminiden in der Peak-Na
 
 ## EP08 | Mesh-Daten
 
-![Orkan Kyrill – Europa im Sturm](EP08_Kyrill_Animation.gif)
+### Vor- und Nachteile der Methode
 
-Die EP08 zeigt den Orkan Kyrill vom 16. bis 21. Januar 2007 als animierte Mesh-Darstellung. Grundlage sind die stündlichen Windfelder in 10 m Höhe aus der ERA5-Reanalyse (Copernicus), die als Mesh-Layer in QGIS geladen wurden. Die Windgeschwindigkeit wird als Farbfläche dargestellt, die Stromlinien des Windvektors dienen als Maske, sodass nach Geschwindigkeit eingefärbte „Pinselstriche“ auf nachtblauem Grund entstehen, angelehnt an van Goghs „Sternennacht“. Datum, Uhrzeit und ein Verlaufsdiagramm der Maximalgeschwindigkeit zeigen, wo im Sturmverlauf man sich gerade befindet. Am Höhepunkt am 18. Januar erreicht die mittlere Windgeschwindigkeit in 10 m Höhe bis zu 83 km/h. Wie bei EP07 macht die Animation die Dynamik des Sturms sehr anschaulich, die Nachteile sind wieder die große Datenmenge und die fehlende Gesamtübersicht.
+Mesh-Daten speichern Werte auf einem Netz aus Knoten und eignen sich deshalb gut für kontinuierliche Größen, die sich räumlich und zeitlich ändern, wie Windfelder. Stromlinien machen die Strömungsrichtung unmittelbar sichtbar, und in der Animation lässt sich verfolgen, wie ein Sturmtief über Europa hinwegzieht und wo der Wind am stärksten ist.
+
+Die dichte, malerische Darstellung geht allerdings auf Kosten der Lesbarkeit: Genaue Windgeschwindigkeiten lassen sich nur grob über die Farbskala abschätzen, und die Auflösung der Ausgangsdaten (0,25°, stündlich) begrenzt den Detailgrad. Wie bei jeder Animation fehlt außerdem die Gesamtübersicht, und die Datei wird schnell sehr groß.
+
+![Orkan Kyrill – Europa im Sturm](kyrill_animation.gif)
+
+### Umsetzung der Methode
+
+Grundlage sind die stündlichen Windkomponenten in 10 m Höhe aus der ERA5-Reanalyse des Copernicus Climate Change Service, die als GRIB-Datei in QGIS als Mesh-Layer geladen wurden. QGIS rendert für jede Stunde die Windgeschwindigkeit als Farbfläche und die Stromlinien des Windvektors. Die Stromlinien dienen als Maske für die Farbfläche, sodass nach Geschwindigkeit eingefärbte Pinselstriche auf nachtblauem Grund entstehen, angelehnt an van Goghs „Sternennacht“. Für den Zeitraum vom 17. bis 19. Januar 2007 wurden 48 Einzelbilder mit Titel, Uhrzeit, Farbskala und Impressum in ETRS89-LAEA (EPSG:3035) exportiert und zu einem GIF zusammengesetzt. Am Höhepunkt am 18. Januar um 17 Uhr erreicht der Wind im Kartenausschnitt bis zu 83 km/h.
+
+#### Zwei Tage Orkan, gemalt in 48 Bildern.
 
 ## EP09 | 3D-Gebäudemodelle
 
+### Vor- und Nachteile der Methode
+
+3D-Gebäudemodelle machen Gebäudehöhen, Dachformen und Stadtstrukturen deutlich greifbarer als ein Grundriss. LoD2-Modelle bilden Dächer realistisch ab und eignen sich gut für Stadtbild- und Sichtachsenanalysen, zumal sie für ganze Bundesländer frei verfügbar sind.
+
+Der Detailgrad ist jedoch begrenzt: Komplexe Bauwerke werden stark vereinfacht, Fassaden und Skulpturen fehlen ganz. Beim Völkerschlachtdenkmal fehlt dadurch jeglicher Detailgrad, es erscheint nur als schlichter Block. Außerdem verdecken hohe Gebäude je nach Blickwinkel andere Objekte, Entfernungen lassen sich in der Schrägansicht nicht messen, und große Modelle brauchen viel Rechenleistung.
+
 ![Völkerschlachtdenkmal Leipzig in 3D](EP09_3D_Leipzig.png)
 
-Für die EP09 wurde ein 3D-Gebäudemodell von Leipzig auf Grundlage der amtlichen LoD2-Daten des Freistaats Sachsen erstellt. Die einzelnen Kacheln wurden in der 3D-Ansicht von QGIS mit ihren echten Dachformen und Gebäudehöhen dargestellt. Im Mittelpunkt steht das Völkerschlachtdenkmal, das orange hervorgehoben ist, jedoch fehlt bei diesem Gebäudemodell jeglicher Detailgrad. LoD2-Modelle bilden Dachformen realistisch ab und eignen sich gut für Stadtbild- und Sichtachsenanalysen. Komplexe Bauwerke wie das Denkmal selbst werden jedoch stark vereinfacht, und Details wie Fassaden oder Skulpturen fehlen.
+### Umsetzung der Methode
+
+Grundlage sind die amtlichen LoD2-Gebäudemodelle des Freistaats Sachsen für ein Gebiet rund um das Völkerschlachtdenkmal, 30 Kacheln mit je 2 × 2 km. Ein Python-Skript hat die Shape-Kacheln eingelesen und mit ihren echten Höhenwerten zu einem gemeinsamen 3D-GeoPackage zusammengeführt. In der 3D-Ansicht von QGIS stehen die Gebäude mit ihren absoluten Dach- und Wandhöhen auf einem Luftbild. Eine regelbasierte Darstellung hebt das Völkerschlachtdenkmal orange hervor, alle übrigen Gebäude bleiben hellgrau. Die Kamera blickt von Südwesten über das Wasserbecken auf das Denkmal.
+
+#### 91 Meter Denkmal, im Modell nur ein Quader.
